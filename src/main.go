@@ -49,8 +49,23 @@ func generate_quicksort_slice(size int) []int {
 }
 
 
-func __interview_quicksort() {
+func __interview_quicksort(a []int) []int {
+	left, right := 0, len(a) - 1
+	pivot := rand.Int() % len(a)
+	a[pivot], a[right] = a[right], a[pivot]
 
+	for i, _ := range a {
+		if a[i] < a[right] {
+			a[left], a[i] = a[i], a[left]
+			left++
+		}
+	}
+
+	a[left], a[right] = a[right], a[left]
+	__interview_quicksort(a[:left])
+	__interview_quicksort(a[left + 1:])
+
+	return a
 }
 
 func main() {
@@ -60,4 +75,5 @@ func main() {
 	slice = make_arr(slice, 50)
 	fmt.Println(slice)
 	fmt.Println(longest_subarray_all_1s(slice))
+
 }
