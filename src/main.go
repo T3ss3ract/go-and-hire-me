@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"github.com/alok87/goutils/pkg/random"
-	_ "math/rand"
+	"math/rand"
+	"time"
 )
 
 func make_arr(sl []int, len int) []int {
@@ -15,6 +16,10 @@ func make_arr(sl []int, len int) []int {
 	return sl
 }
 
+/**
+	find longest chain of 1s in this array
+	part of an interview question
+ */
 func longest_subarray_all_1s(arr []int) int {
 	longestArray := 0
 	currArraySize := 0
@@ -33,11 +38,26 @@ func longest_subarray_all_1s(arr []int) int {
 	return longestArray
 }
 
+func generate_quicksort_slice(size int) []int {
+	slice := make([]int, size, size)
+	rand.Seed(time.Now().UnixNano())
+	for i := 0; i < size; i++ {
+		slice[i] = rand.Intn(999) - rand.Intn(999)
+	}
+	return slice
+
+}
+
+
+func __interview_quicksort() {
+
+}
+
 func main() {
 	var slice []int
 	fmt.Println("yeetus")
 	//slice = longest_subarray_all_1s(slice)
-	slice = make_arr(slice, 100)
+	slice = make_arr(slice, 50)
 	fmt.Println(slice)
 	fmt.Println(longest_subarray_all_1s(slice))
 }
